@@ -33,6 +33,7 @@ let menuItems = [
 */
 const header = document.querySelector('.header');
 const menuButton = document.querySelector('.menu-button');
+const h1Title = document.querySelector('h1')
 
 function menuMaker(menuItems) {
 
@@ -56,3 +57,7 @@ function menuMaker(menuItems) {
 }
 
 header.appendChild(menuMaker(menuItems));
+
+h1Title.addEventListener("click", function () {
+  gsap.from(".header h1", { duration: 2, x: 200, ease: "bounce" });
+})
