@@ -3,6 +3,15 @@
 // You can read about ES6 modules here: https://exploringjs.com/es6/ch_modules.html#sec_basics-of-es6-modules
 const data = [
   {
+    title: 'Nobody\'s Smart but Me!',
+    date: 'Sept 2nd, 2020',
+    firstParagraph: `Rumplestiltskin tricked Shrek into opening the way for him to become ruler of farfaraway. Rumplestiltskin tricked Shrek into opening the way for him to become ruler of farfaraway. Rumplestiltskin tricked Shrek into opening the way for him to become ruler of farfaraway. Rumplestiltskin tricked Shrek into opening the way for him to become ruler of farfaraway. Hehehehehehe!!!!`,
+
+    secondParagraph: `Shrek wakes in a new world to find it filled with ogers in peril. Shrek wakes in a new world to find it filled with ogers in peril. Shrek wakes in a new world to find it filled with ogers in peril. Shrek wakes in a new world to find it filled with ogers in peril. Shrek wakes in a new world to find it filled with ogers in peril. Fiona leads the resistance!??!?!?!?`,
+
+    thirdParagraph: `Can true love's kiss truly put things right? Can true love's kiss truly put things right? Can true love's kiss truly put things right? Can true love's kiss truly put things right? Can true love's kiss truly put things right? Can true love's kiss truly put things right? Can true love's kiss truly put things right? Fail! She doesn't love ME!!???!?!`
+  },
+  {
     title: 'Lambda School Students: "We\'re the best!"',
     date: 'Nov 5th, 2018',
     firstParagraph: `Lucas ipsum dolor sit amet ben twi'lek padmé darth darth darth moff hutt organa twi'lek. Ben amidala secura skywalker lando
@@ -114,3 +123,50 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+function articleMaker(object) {
+  // create the elements
+  const articleContainer = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const par1 = document.createElement('p');
+  const par2 = document.createElement('p');
+  const par3 = document.createElement('p');
+  const button = document.createElement('span');
+
+  // place elements inside div
+  articleContainer.appendChild(articleTitle);
+  articleContainer.appendChild(articleDate);
+  articleContainer.appendChild(par1);
+  articleContainer.appendChild(par2);
+  articleContainer.appendChild(par3);
+  articleContainer.appendChild(button);
+
+  // create class for div, p, and span 
+  articleContainer.classList.add('article');
+  articleDate.classList.add('date');
+  button.classList.add('expandButton');
+
+  // create the text content for each element
+  articleTitle.textContent = object.title;
+  articleDate.textContent = object.date;
+  par1.textContent = object.firstParagraph;
+  par2.textContent = object.secondParagraph;
+  par3.textContent = object.thirdParagraph;
+  button.textContent = '+';
+
+  // .addEventListener for button
+  button.addEventListener('click', event => {
+    articleContainer.classList.toggle('article-open');
+  })
+
+  // return entire component
+  return articleContainer;
+}
+
+let articles = document.querySelector('.articles');
+
+// map over data, create component for each object, and add each component as childen of articles div
+data.map(item => {
+  articles.appendChild(articleMaker(item));
+});
